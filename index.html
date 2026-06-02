@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Uchenna Chinwekele Godswill – Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", monospace, sans-serif;
+        background: #0e0e10;
+        color: #cccccc;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* VS Code global container */
+      .vscode-container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        background-color: #1e1e1e;
+      }
+
+      /* ========= SIDEBAR NAVIGATION (Activity Bar style) ========= */
+      .activity-bar {
+        width: 68px;
+        background-color: #252526;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 0 20px 0;
+        border-right: 1px solid #2d2d2d;
+        flex-shrink: 0;
+      }
+
+      .nav-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        color: #858585;
+        position: relative;
+      }
+
+      .nav-item i {
+        font-size: 26px;
+      }
+
+      .nav-item span {
+        font-size: 10px;
+        margin-top: 5px;
+        font-weight: 500;
+      }
+
+      .nav-item.active {
+        color: #ffffff;
+        border-left: 2px solid #0078d4;
+        margin-left: -2px;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 120, 212, 0.1) 0%,
+          rgba(0, 120, 212, 0) 100%
+        );
+        width: 100%;
+      }
+
+      .nav-item:not(.active):hover {
+        color: #e0e0e0;
+      }
+
+      .bottom-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: #858585;
+        cursor: pointer;
+      }
+
+      .bottom-actions i {
+        font-size: 22px;
+        transition: 0.1s;
+      }
+
+      .bottom-actions i:hover {
+        color: #f0f0f0;
+      }
+
+      /* ========= MAIN WORKBENCH (Content + Terminal) ========= */
+      .main-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background-color: #1e1e1e;
+      }
+
+      /* Title bar / header */
+      .title-bar {
+        background-color: #2d2d30;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid #3c3c3c;
+        font-size: 13px;
+        font-weight: 500;
+        color: #e5e5e5;
+      }
+
+      .title-bar i {
+        color: #0078d4;
+      }
+
+      .file-badge {
+        background: #1e1e1e;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 12px;
+      }
+
+      /* CONTENT AREA (editor-like) */
+      .content-area {
+        flex: 1;
+        overflow-y: auto;
+        padding: 28px 32px;
+        background: #1e1e1e;
+        scroll-behavior: smooth;
+      }
+
+      /* Hide all sections by default */
+      .section {
+        display: none;
+        animation: fadeInUp 0.2s ease-out;
+      }
+
+      .section.active-section {
+        display: block;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* professional card, code-like styling */
+      .hero {
+        margin-bottom: 40px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #ffffff, #4d9eff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: -0.5px;
+      }
+
+      .hero .tagline {
+        font-size: 1.1rem;
+        color: #9cdcfe;
+        border-left: 3px solid #0078d4;
+        padding-left: 16px;
+        margin: 20px 0;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        margin: 28px 0;
+      }
+
+      .card {
+        background: #252526;
+        border-radius: 12px;
+        padding: 20px;
+        border: 1px solid #3e3e42;
+        transition: 0.2s;
+      }
+
+      .card:hover {
+        border-color: #0078d4;
+        transform: translateY(-2px);
+      }
+
+      .card i {
+        font-size: 32px;
+        color: #4d9eff;
+        margin-bottom: 16px;
+      }
+
+      .card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: #ffffff;
+      }
+
+      .skill-tag {
+        background: #2d2d2d;
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        margin: 4px 6px 4px 0;
+        font-family: monospace;
+      }
+
+      .project-item {
+        background: #252526;
+        border-radius: 12px;
+        padding: 18px;
+        margin-bottom: 18px;
+        border-left: 4px solid #0078d4;
+      }
+
+      .project-item h4 {
+        color: #f0f0f0;
+        margin-bottom: 6px;
+      }
+
+      .contact-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .contact-tag {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 50px;
+        background: rgba(99, 102, 241, 0.15);
+        color: #818cf8;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+      }
+
+      .contact-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+
+      .contact-header p {
+        color: #a1a1aa;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .contact-card {
+        max-width: 650px;
+        margin: auto;
+        padding: 35px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 18px;
+        margin-bottom: 15px;
+        border-radius: 16px;
+        transition: 0.3s ease;
+      }
+
+      .contact-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        transform: translateX(8px);
+      }
+
+      .icon-box {
+        width: 55px;
+        height: 55px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        color: white;
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      }
+
+      .contact-item span {
+        color: #9ca3af;
+        font-size: 0.9rem;
+      }
+
+      .contact-item h4 {
+        color: white;
+        margin-top: 4px;
+      }
+
+      .contact-note {
+        margin: 25px 0;
+        padding: 18px;
+        border-radius: 14px;
+        background: rgba(99, 102, 241, 0.1);
+        color: #cbd5e1;
+        border-left: 4px solid #6366f1;
+      }
+
+      .contact-actions {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        flex: 1;
+        min-width: 180px;
+        text-align: center;
+        padding: 14px 20px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s ease;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        color: white;
+      }
+
+      .btn-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: white;
+      }
+
+      .btn-primary:hover,
+      .btn-secondary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+      }
+
+      /* Terminal wrapper (VS Code panel style) */
+      .terminal-panel {
+        background-color: #1e1e1e;
+        border-top: 1px solid #3c3c3c;
+        display: flex;
+        flex-direction: column;
+        font-family: "Menlo", "Cascadia Code", "Fira Code", monospace;
+        transition: all 0.1s;
+      }
+
+      .terminal-header {
+        background: #2d2d30;
+        padding: 8px 16px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .terminal-header i {
+        margin-right: 6px;
+      }
+
+      .terminal-body {
+        background-color: #0c0c0c;
+        padding: 12px 16px;
+        max-height: 220px;
+        overflow-y: auto;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .terminal-line {
+        margin-bottom: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        font-family: monospace;
+      }
+
+      .prompt {
+        color: #4ec9b0;
+        margin-right: 12px;
+        font-weight: 500;
+      }
+
+      .terminal-input-line {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+        flex-wrap: wrap;
+      }
+
+      .terminal-input {
+        background: #1e1e1e;
+        border: 1px solid #3c3c3c;
+        color: #d4d4d4;
+        font-family: monospace;
+        padding: 6px 12px;
+        border-radius: 8px;
+        flex: 1;
+        outline: none;
+        font-size: 13px;
+      }
+
+      .terminal-input:focus {
+        border-color: #0078d4;
+      }
+
+      .term-btn {
+        background: #0e639c;
+        border: none;
+        color: white;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 12px;
+        cursor: pointer;
+        transition: 0.1s;
+      }
+
+      .term-btn:hover {
+        background: #1177bb;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1e1e1e;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #424242;
+        border-radius: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4f4f4f;
+      }
+
+      /* responsive */
+      @media (max-width: 680px) {
+        .activity-bar {
+          width: 56px;
+        }
+        .content-area {
+          padding: 20px;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="vscode-container">
+      <!-- SIDE NAVIGATION (ACTIVITY BAR) -->
+      <div class="activity-bar">
+        <div class="nav-icons">
+          <div class="nav-item" data-section="home" id="nav-home">
+            <i class="fas fa-code"></i>
+            <span>About</span>
+          </div>
+          <div class="nav-item" data-section="skills" id="nav-skills">
+            <i class="fas fa-cogs"></i>
+            <span>Skills</span>
+          </div>
+          <div class="nav-item" data-section="projects" id="nav-projects">
+            <i class="fas fa-folder-open"></i>
+            <span>Projects</span>
+          </div>
+          <div class="nav-item" data-section="contact" id="nav-contact">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+          </div>
+        </div>
+        <div class="bottom-actions">
+          <i
+            class="fas fa-terminal"
+            id="terminal-toggle-icon"
+            style="cursor: pointer"
+            title="Terminal focus"
+          ></i>
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+      </div>
+
+      <!-- main area: content + integrated terminal panel -->
+      <div class="main-panel">
+        <!-- VS Code styled header -->
+        <div class="title-bar">
+          <i class="fab fa-visual-studio-code"></i>
+          <span>Portfolio – Uchenna Chinwekele Godswill</span>
+          <div class="file-badge">
+            <i class="far fa-file-code"></i> dev_portfolio.tsx
+          </div>
+          <div style="flex: 1"></div>
+          <i class="fas fa-window-minimize"></i>
+        </div>
+
+        <!-- SCROLLABLE CONTENT SECTION -->
+        <div class="content-area" id="contentArea">
+          <!-- HOME / ABOUT SECTION -->
+          <div id="homeSection" class="section active-section">
+            <div class="hero">
+              <h1>
+                Uchenna Chinwekele Godswill
+                <span style="font-size: 1.8rem">⌨️</span>
+              </h1>
+              <div class="tagline">
+                <i class="fas fa-code"></i> Full-Stack Web Developer <br />
+                "Building scalable web applications with modern technologies"
+              </div>
+
+              <p style="max-width: 720px; margin-top: 12px">
+                I'm a passionate Full-Stack Web Developer specializing in
+                React.js, Node.js, Express.js, MySQL, python and modern
+                JavaScript technologies. I enjoy building secure authentication
+                systems, interactive dashboards, business management platforms,
+                and scalable web applications that solve real-world problems. My
+                focus is on creating clean, responsive, and user-friendly
+                digital experiences while continuously exploring advanced
+                technologies such as Web3, cloud services, API integrations, and
+                progressive web applications.
+              </p>
+              <div
+                style="
+                  margin-top: 24px;
+                  display: flex;
+                  gap: 14px;
+                  flex-wrap: wrap;
+                "
+              >
+                <span
+                  style="
+                    background: #0078d4;
+                    padding: 6px 18px;
+                    border-radius: 40px;
+                  "
+                >
+                  <a
+                    href="https://github.com/sakamantoes"
+                    style="text-decoration: none; color: white"
+                    ><i class="fab fa-github"></i> github</a
+                  >
+                </span>
+                <span
+                  style="
+                    background: green;
+                    padding: 6px 18px;
+                    border-radius: 40px;
+                  "
+                >
+                  <a
+                    href="https://wa.me/2349074705974"
+                    style="text-decoration: none; color: white"
+                  >
+                    <i class="fab fa-whatsapp"></i> Whatsapp
+                  </a>
+                </span>
+              </div>
+            </div>
+            <div class="card-grid">
+              <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>Full-Stack Development</h3>
+                <p>
+                  Building scalable web apps with React, Node.js, and clean
+                  architecture from frontend to backend.
+                </p>
+              </div>
+
+              <div class="card">
+                <i class="fas fa-plug"></i>
+                <h3>API & System Integration</h3>
+                <p>
+                  Secure authentication, third-party APIs (SMS, payments), and
+                  real-time data flow systems.
+                </p>
+              </div>
+
+              <div class="card">
+                <i class="fas fa-lock"></i>
+                <h3>Secure & Scalable Systems</h3>
+                <p>
+                  JWT auth, role-based access, database relationships, and
+                  production-ready backend design.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SKILLS SECTION -->
+          <div id="skillsSection" class="section">
+            <h2 style="font-size: 1.8rem; margin-bottom: 20px; color: #e6e6e6">
+              <i class="fas fa-cogs"></i> Technical Expertise
+            </h2>
+
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-bottom: 28px;
+              "
+            >
+              <span class="skill-tag">JavaScript (ES6+)</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+              <span class="skill-tag">REST APIs</span>
+              <span class="skill-tag">JWT Authentication</span>
+              <span class="skill-tag">Firebase</span>
+              <span class="skill-tag">Supabase</span>
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">Sequelize ORM</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">Framer Motion</span>
+              <span class="skill-tag">Git & GitHub</span>
+              <span class="skill-tag">Docker (Basics)</span>
+              <span class="skill-tag">Web3 (Sei Network)</span>
+            </div>
+
+            <div class="card">
+              <h3><i class="fas fa-chart-line"></i> Development Workflow</h3>
+              <p>
+                ✓ Full-stack architecture (React + Node + Database)
+                &nbsp;|&nbsp; ✓ Authentication systems (JWT, cookies, sessions)
+                &nbsp;|&nbsp; ✓ Database design & relationships (MySQL /
+                MongoDB)<br />
+
+                ✓ API development & integration (REST / external APIs)
+                &nbsp;|&nbsp; ✓ State management & frontend architecture (React
+                patterns)<br />
+
+                ✓ Testing, debugging & production-ready deployment thinking
+                &nbsp;|&nbsp; ✓ Git workflows, branching & collaboration
+                &nbsp;|&nbsp; ✓ Real-world systems: payments, dashboards, admin
+                panels
+              </p>
+            </div>
+          </div>
+
+          <!-- PROJECTS SECTION -->
+          <div id="projectsSection" class="section">
+            <h2 style="font-size: 1.8rem; margin-bottom: 20px">
+              <i class="fas fa-folder-open"></i> Featured Projects
+            </h2>
+
+            <!-- Project 1 -->
+            <div class="project-item">
+              <h4>
+                <i class="fas fa-tasks"></i> Fullstack virtual number
+                website(SMSWINNERS) • React + Node.js + MongoDB + cloudinary +
+                external APIs
+              </h4>
+              <p>
+                A complete system which allow user to buy virtual numbers for
+                receiving SMS online, with secure authentication, user
+                dashboard, and admin panel for managing numbers and messages.
+              </p>
+              <div>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Express</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">Cloudinary</span>
+                <span class="skill-tag">External APIs</span>
+              </div>
+              <a
+                href="https://www.smswinners.online"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: #0078d4;
+                  font-weight: 500;
+                  margin-top: 12px;
+                  display: inline-block;
+                "
+              >
+                View Project →
+              </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item">
+              <h4>
+                <i class="fas fa-university"></i> Investment / Banking
+                System(RISE BANK)
+              </h4>
+              <p>
+                A virtual banking platform with deposits, withdrawals, admin
+                control, loan system, and transaction tracking using secure
+                authentication.
+              </p>
+              <div>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">JWT</span>
+                <span class="skill-tag">Supabase</span>
+              </div>
+              <a
+                href="https://rise-bank.vercel.app"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: #0078d4;
+                  font-weight: 500;
+                  margin-top: 12px;
+                  display: inline-block;
+                "
+              >
+                View Project →
+              </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item">
+              <h4>
+                <i class="fas fa-shield-alt"></i> CyberShield IDS (Network
+                Intrusion Detection System)
+              </h4>
+              <p>
+                A real-time network intrusion detection system designed to
+                simulate and monitor network activity, detect suspicious
+                behavior, and enhance cybersecurity awareness. Includes chat and
+                points-based interaction features with PWA support for
+                mobile-like experience.
+              </p>
+
+              <div>
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">PWA</span>
+                <span class="skill-tag">Socket.io</span>
+                <span class="skill-tag">Cybersecurity</span>
+                <span class="skill-tag">Network Monitoring</span>
+              </div>
+
+              <a
+                href="https://favour-network-app-828t.vercel.app/"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: #0078d4;
+                  font-weight: 500;
+                  margin-top: 12px;
+                  display: inline-block;
+                "
+              >
+                View Project →
+              </a>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-item">
+              <h4>
+                <i class="fas fa-laptop-code"></i> Frontend UI Practice Project
+              </h4>
+              <p>
+                A frontend-only project built to practice and improve my HTML,
+                CSS, and JavaScript skills. Focused on responsive layouts,
+                animations, styling, and user interface design without using
+                frameworks like Tailwind CSS.
+              </p>
+
+              <div>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">JavaScript</span>
+              </div>
+
+              <a
+                href="https://gamer-three-blond.vercel.app/"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: #0078d4;
+                  font-weight: 500;
+                  margin-top: 12px;
+                  display: inline-block;
+                "
+              >
+                View Project →
+              </a>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-item">
+              <h4><i class="fas fa-sticky-note"></i> Simple Note Summarizer</h4>
+              <p>
+                Write detailed notes and instantly generate concise summaries
+                using word-count and sentence reduction techniques. Designed to
+                help users quickly review key points without AI-powered
+                processing.
+              </p>
+              <div>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Text Processing</span>
+              </div>
+              <a
+                href="https://your-project-link.com"
+                target="_blank"
+                style="
+                  text-decoration: none;
+                  color: #0078d4;
+                  font-weight: 500;
+                  margin-top: 12px;
+                  display: inline-block;
+                "
+              >
+                View Project →
+              </a>
+            </div>
+
+            <!-- Future Projects Notice -->
+            <div
+              style="
+                margin-top: 30px;
+                padding: 20px;
+                text-align: center;
+                background: rgba(0, 120, 212, 0.08);
+                border: 1px dashed #0078d4;
+                border-radius: 12px;
+              "
+            >
+              <h4 style="margin-bottom: 10px; color: #0078d4">
+                <i class="fas fa-rocket"></i> More Projects Coming Soon
+              </h4>
+              <p style="margin: 0; color: #fff">
+                I am continuously building and improving new applications. More
+                innovative projects and real-world solutions will be added to
+                this portfolio in the future. Stay tuned for upcoming releases!
+              </p>
+            </div>
+          </div>
+
+          <!-- CONTACT SECTION -->
+          <div id="contactSection" class="section">
+            <div class="contact-header">
+              <span class="contact-tag">Get In Touch</span>
+              <h2>
+                <i class="fas fa-paper-plane"></i>
+                Let's Build Something Amazing
+              </h2>
+              <p>
+                Have a project in mind? Looking for a developer or collaborator?
+                Feel free to reach out.
+              </p>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-item">
+                <div class="icon-box">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <span>Email</span>
+                  <h4>chinwekeleuchenna@gmail.com</h4>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="icon-box">
+                  <i class="fab fa-github"></i>
+                </div>
+                <div>
+                  <span>GitHub</span>
+                  <h4>/sakamantoes</h4>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="icon-box">
+                  <i class="fab fa-twitter"></i>
+                </div>
+                <div>
+                  <span>X / Twitter</span>
+                  <h4>@Godswill2910601</h4>
+                </div>
+              </div>
+
+              <div class="contact-note">
+                <i class="fas fa-rocket"></i>
+                Available for freelance projects, startup collaborations, and
+                innovative web applications.
+              </div>
+
+              <div class="contact-actions">
+                <a href="https://github.com/sakamantoes" class="btn-secondary">
+                  <i class="fab fa-github"></i>
+                  View Portfolio
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INTEGRATED TERMINAL (vs code style panel) -->
+        <div class="terminal-panel" id="terminalPanel">
+          <div class="terminal-header" id="terminalHeader">
+            <i class="fas fa-chevron-down" id="terminalCaret"></i>
+            <span><i class="fas fa-terminal"></i> TERMINAL</span>
+            <span style="margin-left: auto; font-size: 11px"
+              >zsh • dev portfolio</span
+            >
+          </div>
+          <div class="terminal-body" id="terminalBody">
+            <div class="terminal-line">
+              <span class="prompt">➜</span>
+              <span style="color: #9cdcfe">~/portfolio</span>
+              <span style="color: #d4d4d4">$</span>
+              <span style="color: #ce9178">node --version</span>
+            </div>
+            <div class="terminal-line">
+              <span style="margin-left: 22px; color: #b5cea8">v20.10.0</span>
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">➜</span>
+              <span style="color: #9cdcfe">~/portfolio</span>
+              <span style="color: #d4d4d4">$</span>
+              <span style="color: #ce9178"
+                >echo "Welcome to UCHENNA's interactive terminal"</span
+              >
+            </div>
+            <div class="terminal-line">
+              <span style="margin-left: 22px"
+                >Welcome to UCHENNA's interactive terminal</span
+              >
+            </div>
+            <div class="terminal-line">
+              <span class="prompt">➜</span>
+              <span style="color: #9cdcfe">~/portfolio</span>
+              <span style="color: #d4d4d4">$</span>
+              <span style="color: #6a9955"
+                ># type 'help' to see available commands or 'clear'</span
+              >
+            </div>
+            <!-- dynamic command output will be appended here -->
+            <div id="commandOutput"></div>
+            <div class="terminal-input-line">
+              <span class="prompt">❯</span>
+              <input
+                type="text"
+                id="terminalCommandInput"
+                class="terminal-input"
+                placeholder="Run command (help, about, skills, projects, contact, date, clear)"
+                autocomplete="off"
+              />
+              <button id="runCommandBtn" class="term-btn">
+                <i class="fas fa-play"></i> Run
+              </button>
+            </div>
+            <div style="font-size: 11px; margin-top: 10px; color: #6a9955">
+              <i class="fas fa-info-circle"></i> Interactive terminal — try:
+              <kbd>about</kbd> <kbd>skills</kbd> <kbd>projects</kbd>
+              <kbd>contact</kbd> <kbd>date</kbd>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // DOM references
+      const sections = {
+        home: document.getElementById("homeSection"),
+        skills: document.getElementById("skillsSection"),
+        projects: document.getElementById("projectsSection"),
+        contact: document.getElementById("contactSection"),
+      };
+      const navItems = document.querySelectorAll(".nav-item");
+      const terminalOutputDiv = document.getElementById("commandOutput");
+      const termInput = document.getElementById("terminalCommandInput");
+      const runBtn = document.getElementById("runCommandBtn");
+      const terminalCaret = document.getElementById("terminalCaret");
+      const terminalBody = document.getElementById("terminalBody");
+      const terminalPanel = document.getElementById("terminalPanel");
+
+      // Helper: Activate section
+      function setActiveSection(sectionId) {
+        Object.keys(sections).forEach((key) => {
+          sections[key].classList.remove("active-section");
+        });
+        const selectedSection = sections[sectionId];
+        if (selectedSection) selectedSection.classList.add("active-section");
+        // update nav active styling
+        navItems.forEach((item) => {
+          const sectionAttr = item.getAttribute("data-section");
+          if (sectionAttr === sectionId) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      }
+
+      // Navigation click handlers
+      navItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          const section = item.getAttribute("data-section");
+          if (section && sections[section]) {
+            setActiveSection(section);
+            // optional: add terminal output hint
+            appendTerminalMessage(
+              `$ navigation: switched to ${section} panel`,
+              "#9cdcfe",
+            );
+            termInput.focus();
+          }
+        });
+      });
+
+      // Terminal utilities
+      function appendTerminalMessage(message, color = "#d4d4d4") {
+        const lineDiv = document.createElement("div");
+        lineDiv.className = "terminal-line";
+        lineDiv.style.marginBottom = "6px";
+        lineDiv.innerHTML = `<span class="prompt">❯</span> <span style="color:${color};">${escapeHtml(message)}</span>`;
+        terminalOutputDiv.appendChild(lineDiv);
+        // auto-scroll terminal body
+        const termBodyElem = document.getElementById("terminalBody");
+        termBodyElem.scrollTop = termBodyElem.scrollHeight;
+      }
+
+      function escapeHtml(str) {
+        return str
+          .replace(/[&<>]/g, function (m) {
+            if (m === "&") return "&amp;";
+            if (m === "<") return "&lt;";
+            if (m === ">") return "&gt;";
+            return m;
+          })
+          .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function (c) {
+            return c;
+          });
+      }
+
+      function clearTerminalOutput() {
+        terminalOutputDiv.innerHTML = "";
+        appendTerminalMessage("Terminal cleared.", "#6a9955");
+      }
+
+      // core command handler
+      function handleTerminalCommand(cmdRaw) {
+        let cmd = cmdRaw.trim().toLowerCase();
+        if (cmd === "") return;
+        // show the command echo
+        appendTerminalMessage(`$ ${cmdRaw}`, "#ce9178");
+
+        // process known commands
+        if (cmd === "clear") {
+          clearTerminalOutput();
+          return;
+        } else if (cmd === "help") {
+          appendTerminalMessage(
+            "Available: about, skills, projects, contact, date, clear, nav (home|skills|projects|contact)",
+            "#8ccb8c",
+          );
+          appendTerminalMessage(
+            'Example: "skills" shows my technical stack & card.',
+            "#b5cea8",
+          );
+        } else if (cmd === "about" || cmd === "home") {
+          setActiveSection("home");
+          appendTerminalMessage(
+            "➜ Switched to ABOUT section. Full-stack developer & architect.",
+            "#4ec9b0",
+          );
+        } else if (cmd === "skills") {
+          setActiveSection("skills");
+          appendTerminalMessage(
+            "➜ Loaded SKILLS panel: TypeScript, React, Node, Go, K8s, cloud architecture.",
+            "#4ec9b0",
+          );
+        } else if (cmd === "projects") {
+          setActiveSection("projects");
+          appendTerminalMessage(
+            "➜ PROJECTS: CodeStream IDE, InfraMetrics Dashboard, TermiKit CLI — check them out.",
+            "#4ec9b0",
+          );
+        } else if (cmd === "contact") {
+          setActiveSection("contact");
+          appendTerminalMessage(
+            "➜ CONTACT panel active: email alex.rivera@devstudio.com or social links.",
+            "#4ec9b0",
+          );
+        } else if (cmd === "date") {
+          const now = new Date();
+          appendTerminalMessage(
+            `Current system time: ${now.toLocaleString()}`,
+            "#e6c384",
+          );
+        } else if (cmd.startsWith("nav ")) {
+          const target = cmd.split(" ")[1];
+          if (target === "home" || target === "about") setActiveSection("home");
+          else if (target === "skills") setActiveSection("skills");
+          else if (target === "projects") setActiveSection("projects");
+          else if (target === "contact") setActiveSection("contact");
+          else
+            appendTerminalMessage(
+              `Unknown nav target: ${target}. Use home, skills, projects, contact`,
+              "#f48771",
+            );
+        } else {
+          appendTerminalMessage(
+            `Command not recognized: '${cmdRaw}'. Try 'help' for available commands.`,
+            "#f48771",
+          );
+        }
+        termInput.value = "";
+        termInput.focus();
+      }
+
+      // Terminal collapse/expand (VS Code style)
+      let terminalCollapsed = false;
+      function toggleTerminal() {
+        if (terminalCollapsed) {
+          terminalBody.style.display = "block";
+          terminalCaret.className = "fas fa-chevron-down";
+          terminalCollapsed = false;
+        } else {
+          terminalBody.style.display = "none";
+          terminalCaret.className = "fas fa-chevron-right";
+          terminalCollapsed = true;
+        }
+      }
+      document
+        .getElementById("terminalHeader")
+        .addEventListener("click", toggleTerminal);
+      // bottom terminal toggle icon from activity bar
+      document
+        .getElementById("terminal-toggle-icon")
+        .addEventListener("click", () => {
+          if (terminalCollapsed) {
+            terminalBody.style.display = "block";
+            terminalCaret.className = "fas fa-chevron-down";
+            terminalCollapsed = false;
+          } else {
+            // if expanded, scroll terminal into view briefly
+            terminalPanel.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }
+        });
+
+      // run command on button click or enter key
+      runBtn.addEventListener("click", () => {
+        handleTerminalCommand(termInput.value);
+      });
+      termInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          handleTerminalCommand(termInput.value);
+        }
+      });
+
+      // Additional small polish: send initial "welcome" terminal output alternative
+      window.addEventListener("load", () => {
+        // set active default home active
+        setActiveSection("home");
+        appendTerminalMessage(
+          "Interactive terminal ready. Try: about, skills, projects, contact, date, clear",
+          "#569cd6",
+        );
+        termInput.focus();
+        // Show professional greeting
+        const initMsg = document.createElement("div");
+        initMsg.className = "terminal-line";
+        initMsg.innerHTML = `<span class="prompt">➜</span> <span style="color:#4ec9b0;">✨ VS Code Portfolio v1.0 — Terminal integration active ✨</span>`;
+        terminalOutputDiv.prepend(initMsg);
+      });
+
+      // fix styling if terminal body toggle persists
+      document.querySelectorAll(".card, .project-item").forEach((el) => {
+        el.addEventListener("click", (e) => e.stopPropagation());
+      });
+    </script>
+  </body>
+</html>
